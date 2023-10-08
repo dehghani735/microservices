@@ -36,6 +36,8 @@ services:
     ports:
       # Port used for the Zipkin UI and HTTP Api
       - "9411:9411"
+    networks:
+      - spring
       # Uncomment if you set SCRIBE_ENABLED=true
       # - 9410:9410
   rabbitmq:
@@ -49,6 +51,8 @@ services:
     container_name: eureka-server
     ports:
       - "8761:8761"
+    networks:
+      - spring
     depends_on:
       - zipkin
   apigw:
@@ -56,6 +60,8 @@ services:
     container_name: apigw
     ports:
       - "8083:8083"
+    networks:
+      - spring
     depends_on:
       - zipkin
       - eureka-server
